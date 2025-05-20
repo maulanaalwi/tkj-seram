@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Perusahaan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-gradient text-white fw-bold text-center py-3" style="background: linear-gradient(90deg, #ff8c00, #ff4500);">
+                <h4 class="mb-0">Detail Informasi Perusahaan</h4>
+            </div>
+            <div class="card-body p-4">
+                <div id="dataDisplay"></div>
+                <a href="index.html" class="btn btn-primary mt-3">Kembali</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Ambil data dari localStorage
+        let formData = localStorage.getItem('formData');
+        if (formData) {
+            formData = JSON.parse(formData);
+            let output = '<ul class="list-group">';
+            for (let key in formData) {
+                output += `<li class="list-group-item"><strong>${key.replace('_', ' ').toUpperCase()}:</strong> ${formData[key]}</li>`;
+            }
+            output += '</ul>';
+            document.getElementById('dataDisplay').innerHTML = output;
+        } else {
+            document.getElementById('dataDisplay').innerHTML = '<p class="text-danger">Tidak ada data yang ditemukan!</p>';
+        }
+    </script>
+</body>
+</html>
